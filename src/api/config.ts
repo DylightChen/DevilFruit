@@ -1,3 +1,11 @@
+/*
+ * @Author: Dylight
+ * @Date: 2021-06-24 19:35:39
+ * @LastEditors: Dylight
+ * @LastEditTime: 2021-08-17 01:58:52
+ * @FilePath: /my-vite-app/src/api/config.ts
+ * @Description:
+ */
 /**
  * API 相关配置文件
  * API URL Dict api 字典
@@ -9,13 +17,8 @@ interface UrlDictType {
     };
 }
 
-const urlDict: UrlDictType = {
-    Basic: {
-        AuthLogin: 'userDomain/admin/v1/user/login', // 登录
-    }
-};
 
-const getUrl = (biz: string, UrlName: string): string => {
+const getUrl = (biz: string, UrlName: string, urlDict: UrlDictType): string => {
     try {
         const bizKeys = Object.keys(urlDict);
         if (bizKeys.indexOf(biz) < 0) {
