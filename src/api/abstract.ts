@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-25 18:08:50
+ * @LastEditTime: 2021-08-26 15:05:24
  * @FilePath: /my-vite-app/src/api/abstract.ts
  * @Description:
  */
@@ -12,6 +12,7 @@
 // import storage from '@/utils/storage';
 import instance from './intercept';
 import { AxiosRequest, CustomResponse } from './types';
+import { ElMessage } from 'element-plus'
 // interface UrlDictType {
 //     [key: string]: {
 //         [key: string]: string;
@@ -71,7 +72,7 @@ class Abstract {
                                 origin: res.data
                             });
                         } else {
-                            // Vue.prototype.$message({ type: 'error', message: res.data?.errorMessage || (url + '请求失败') });
+                            ElMessage({ showClose: true, message: res.data?.errorMessage || (url + '请求失败'), type: 'error' })
                             resolve({
                                 status: false,
                                 message: res.data?.errorMessage || url + '请求失败',
@@ -80,6 +81,7 @@ class Abstract {
                             });
                         }
                     } else {
+                        ElMessage({ showClose: true, message: res.data?.errorMessage || (url + '请求失败') })
                         resolve({
                             status: false,
                             message: res.data?.errorMessage || url + '请求失败',
@@ -89,8 +91,7 @@ class Abstract {
                 })
                 .catch((err) => {
                     const message = err?.data?.errorMessage || err?.message || url + '请求失败';
-                    // Vue.prototype.$toast({ message });
-                    // eslint-disable-next-line
+                    ElMessage({ showClose: true, message: message })
                     reject({ status: false, message, data: null });
                 });
         });

@@ -291,6 +291,11 @@
     "@vue/compiler-dom" "3.2.6"
     "@vue/shared" "3.2.6"
 
+"@vue/devtools-api@^6.0.0-beta.15":
+  version "6.0.0-beta.15"
+  resolved "https://registry.nlark.com/@vue/devtools-api/download/@vue/devtools-api-6.0.0-beta.15.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Fdevtools-api%2Fdownload%2F%40vue%2Fdevtools-api-6.0.0-beta.15.tgz#ad7cb384e062f165bcf9c83732125bffbc2ad83d"
+  integrity sha1-rXyzhOBi8WW8+cg3MhJb/7wq2D0=
+
 "@vue/reactivity@3.2.0-beta.8":
   version "3.2.0-beta.8"
   resolved "https://registry.nlark.com/@vue/reactivity/download/@vue/reactivity-3.2.0-beta.8.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40vue%2Freactivity%2Fdownload%2F%40vue%2Freactivity-3.2.0-beta.8.tgz#5300cfe65d36b77a1f1016ba13bc538471dd1b3e"
@@ -1155,6 +1160,14 @@ picomatch@^2.0.4, picomatch@^2.2.1, picomatch@^2.2.3:
   resolved "https://registry.nlark.com/picomatch/download/picomatch-2.3.0.tgz?cache=0&sync_timestamp=1621648246651&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpicomatch%2Fdownload%2Fpicomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha1-8fBh3o9qS/AiiS4tEoI0+5gwKXI=
 
+pinia@^2.0.0-rc.6:
+  version "2.0.0-rc.6"
+  resolved "https://registry.nlark.com/pinia/download/pinia-2.0.0-rc.6.tgz?cache=0&sync_timestamp=1629394922521&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fpinia%2Fdownload%2Fpinia-2.0.0-rc.6.tgz#f83b7f2a62710715487574d6f442aa879961122b"
+  integrity sha1-+Dt/KmJxBxVIdXTW9EKqh5lhEis=
+  dependencies:
+    "@vue/devtools-api" "^6.0.0-beta.15"
+    vue-demi "*"
+
 postcss-modules-extract-imports@^3.0.0:
   version "3.0.0"
   resolved "https://registry.nlark.com/postcss-modules-extract-imports/download/postcss-modules-extract-imports-3.0.0.tgz#cda1f047c0ae80c97dbe28c3e76a43b88025741d"
@@ -1458,6 +1471,11 @@ vite@^2.5.1:
     rollup "^2.38.5"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vue-demi@*:
+  version "0.11.3"
+  resolved "https://registry.nlark.com/vue-demi/download/vue-demi-0.11.3.tgz#dd7495b92b495ecfa35675bf024b1358a7add150"
+  integrity sha1-3XSVuStJXs+jVnW/AksTWKet0VA=
 
 vue-router@4.0.0-rc.6:
   version "4.0.0-rc.6"

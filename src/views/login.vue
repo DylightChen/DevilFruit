@@ -4,13 +4,13 @@
  * @Email: 1240235512@qq.com
  * @Date: 2020-12-17 09:47:33
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-25 20:32:34
+ * @LastEditTime: 2021-08-26 19:02:59
 -->
 <template>
   <img class="login-background" src="../assets/image/loginBg.jpg" alt />
   <el-card
     class="login-card"
-    v-loading="loading"
+    v-loading="data.loading"
     element-loading-spinner="el-icon-loading"
     element-loading-background="rgba(0, 0, 0, 0.2)"
   >
@@ -19,7 +19,7 @@
         <span>登陆</span>
       </div>
     </template>
-    <el-form :model="form" ref="refForm" class="form">
+    <el-form :model="form" ref="refForm" class="form" :rules="rules">
       <el-form-item label="账号" prop="username">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
@@ -33,97 +33,55 @@
   </el-card>
 </template>
   
-  <script lang="ts">
-import { computed, defineComponent, reactive, toRefs, nextTick, ref, onBeforeMount } from 'vue'
+  <script lang="ts" setup>
+import { computed, reactive, toRefs, nextTick, ref, onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
-import instance  from "../api/index";
-// let [basicApi,b] = [...basicApi1]
-// ====== LOG START ======
-console.log('\n');
-console.group('Log');
-console.log(instance);
-console.groupEnd();
-console.log('\n');
-// ====== LOG END ======
+import { instance } from "../api/index";
 
-export default defineComponent({
-  setup() {
-    const router = useRouter()
-    console.log(instance.basicApi.authLogin);
-    const data = reactive({
-      loading: false,
-      captchaPath: ''
-    })
-    let params = {
-        account: '111',
-        password: '111',
-        captchaCode: '111',
-        captchaCodeToken: '111'
-      }
-      function get() {
-        instance.basicApi.authLogin(params).then((res: any) => {
-          console.log(res);
-        })
-        
-      }
-      get()
-    const refForm = ref()
-    const form = reactive({
-      username: 'test',
-      password: 'test',
-      uuid: '',
-      code: ''
-    })
-    const rules = computed(() => {
-      const rule = {
-        username: [{ required: true, message: '', trigger: 'blur' }],
-        password: [{ required: true, message: '', trigger: 'blur' }],
-        code: [{ required: true, message: '', trigger: 'blur' }]
-      }
-      nextTick(() => {
-        refForm.value.clearValidate()
-      })
-      return rule
-    })
-    /**
-     * @description: 登录表单提交
-     * @param {*}
-     * @return {*}
-     * @author: gumingchen
-     */
-    const submit = (): void => {
-      refForm.value.validate((valid: boolean) => {
-        if (valid) {
-          data.loading = true
-          // loginApi(form).then(r => {
-          if (valid) {
-            // store.dispatch('user/setToken', r.data)
-            router.push({ name: 'home' })
-          } else {
-            // captcha()
-          }
-          data.loading = false
-          // })
-        }
-      })
-    }
-
-    //   onBeforeMount(() => {
-    //     captcha()
-    //   })
-
-    return {
-      ...toRefs(data),
-      refForm,
-      form,
-      rules,
-      submit
-    }
-  }
+const router = useRouter()
+const data = reactive({
+  loading: false,
+  captchaPath: ''
 })
+const refForm = ref()
+const form = reactive({
+  username: 'test',
+  password: 'test',
+
+})
+const rules = reactive({
+  username: [{ required: true, message: '输入账号', trigger: 'blur' }],
+  password: [{ required: true, message: '输入密码', trigger: 'blur' }],
+  code: [{ required: true, message: '', trigger: 'blur' }]
+})
+/**
+ * @description: 登录表单提交
+ * @param {*}
+ * @return {*}
+ * @author: gumingchen
+ */
+const submit = (): void => {
+  console.log(form)
+  refForm.value.validate(async (valid: boolean) => {
+    if (valid) {
+      console.log(data)
+      data.loading = true
+      let res = await instance['basicApi'].authLogin(form)
+      console.log(res);
+      if (res.status) {
+        console.log(res.date);
+        // store.dispatch('user/setToken', r.data)
+        router.push({ name: 'home' })
+      } else {
+        data.loading = false
+        // captcha()
+      }
+    }
+  })
+}
+
 </script>
-  
-  <style lang="scss" scoped>
+<style lang="scss" scoped>
 @import "Sass/_mixin.scss";
 .login-background {
   width: 100vw;

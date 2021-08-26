@@ -3,7 +3,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-25 20:29:41
+ * @LastEditTime: 2021-08-26 14:29:25
  * @FilePath: /my-vite-app/src/api/modules/basic.ts
  * @Description:
  */
@@ -32,7 +32,7 @@ interface authusBasic {
 }
 
 enum authorBasic {
-    AuthLogin = "userDomain/admin/v1/user/login",
+    AuthLogin = "user/login",
     AuthLogOut = "userDomain/admin/v1/user/AuthLogOut",
 
 }
