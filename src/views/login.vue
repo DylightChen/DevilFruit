@@ -1,10 +1,10 @@
 <!--
  * @Description:
- * @Author: gumingchen
+ * @Author: Dylight
  * @Email: 1240235512@qq.com
  * @Date: 2020-12-17 09:47:33
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-26 19:02:59
+ * @LastEditTime: 2021-08-29 16:49:23
 -->
 <template>
   <img class="login-background" src="../assets/image/loginBg.jpg" alt />
@@ -15,11 +15,11 @@
     element-loading-background="rgba(0, 0, 0, 0.2)"
   >
     <template #header>
-      <div class="card-header">
+      <div class="card-header" ref="refForm">
         <span>登陆</span>
       </div>
     </template>
-    <el-form :model="form" ref="refForm" class="form" :rules="rules">
+    <el-form :model="form" ref="elementRef" class="form" :rules="rules">
       <el-form-item label="账号" prop="username">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
@@ -33,49 +33,47 @@
   </el-card>
 </template>
   
-  <script lang="ts" setup>
-import { computed, reactive, toRefs, nextTick, ref, onBeforeMount } from 'vue'
+<script lang="ts" setup>
+import { computed, reactive, toRefs, nextTick, ref, Ref, onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
-import { instance } from "../api/index";
+import { useUserStore } from '@/stores/user'
 
-const router = useRouter()
+
 const data = reactive({
   loading: false,
   captchaPath: ''
 })
-const refForm = ref()
+
+// console.log(elementRef)
 const form = reactive({
   username: 'test',
   password: 'test',
-
 })
 const rules = reactive({
   username: [{ required: true, message: '输入账号', trigger: 'blur' }],
-  password: [{ required: true, message: '输入密码', trigger: 'blur' }],
-  code: [{ required: true, message: '', trigger: 'blur' }]
+  password: [{ required: true, message: '', trigger: 'blur' }],
 })
+
+const router = useRouter()
+const user = useUserStore()
+
+
 /**
- * @description: 登录表单提交
+ * @description: Login form submission, submission is an asynchronous function, 
+ * but elementRef does not get ts error will be reported 
+ * The object may be null, but the project can be executed normally.
+ * 
  * @param {*}
  * @return {*}
- * @author: gumingchen
+ * @author: 
  */
+let elementRef = ref()
 const submit = (): void => {
-  console.log(form)
-  refForm.value.validate(async (valid: boolean) => {
+  elementRef.value.validate(async (valid: boolean) => {
     if (valid) {
-      console.log(data)
       data.loading = true
-      let res = await instance['basicApi'].authLogin(form)
-      console.log(res);
-      if (res.status) {
-        console.log(res.date);
-        // store.dispatch('user/setToken', r.data)
-        router.push({ name: 'home' })
-      } else {
-        data.loading = false
-        // captcha()
-      }
+      let res = await user.login(form)
+      if (res) router.push({ name: 'home' })
     }
   })
 }

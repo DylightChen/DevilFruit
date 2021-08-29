@@ -564,10 +564,10 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-element-plus@1.1.0-beta.4:
-  version "1.1.0-beta.4"
-  resolved "https://registry.nlark.com/element-plus/download/element-plus-1.1.0-beta.4.tgz#c82afb73ad5e35fc0ee99274783c1bbcfd8493f1"
-  integrity sha1-yCr7c61eNfwO6ZJ0eDwbvP2Ek/E=
+element-plus@1.1.0-beta.7:
+  version "1.1.0-beta.7"
+  resolved "https://registry.nlark.com/element-plus/download/element-plus-1.1.0-beta.7.tgz?cache=0&sync_timestamp=1629987521112&other_urls=https%3A%2F%2Fregistry.nlark.com%2Felement-plus%2Fdownload%2Felement-plus-1.1.0-beta.7.tgz#9a877bc2d72f5c3ab6f78a3c45fa6f458ea87fb0"
+  integrity sha1-mod7wtcvXDq294o8RfpvRY6of7A=
   dependencies:
     "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.4.4"

@@ -8,7 +8,7 @@
     "eslint": "eslint src --ext .ts"
   },
   "dependencies": {
-    "element-plus": "1.1.0-beta.4",
+    "element-plus": "1.1.0-beta.7",
     "pinia": "^2.0.0-rc.6",
     "vue": "3.2.0-beta.8",
     "vue-router": "4.0.0-rc.6"
