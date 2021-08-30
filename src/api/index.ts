@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-29 12:28:47
+ * @LastEditTime: 2021-08-29 19:41:49
  * @FilePath: /my-vite-app/src/api/index.ts
  * @Description: 
  */
@@ -16,12 +16,11 @@ interface apiClassType<T = any> {
     [key: string]: T
 }
 let instance: apiClassType = { };
-// class instance implements apiClassType{
-// class instance implements apiClassType<T>{
+// class apiInstance implements apiClassType {
+//     protected instance: apiClassType = { }
 
 // }
 
-// }
 (() => {
     for (let [key, value] of Object.entries(apiInterface)) {
         if (instance[key]) return;

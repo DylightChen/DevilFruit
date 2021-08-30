@@ -2,12 +2,14 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-26 18:44:19
+ * @LastEditTime: 2021-08-30 00:17:29
  * @FilePath: /my-vite-app/vite.config.ts
  * @Description: 
  */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import vueJsx from "@vitejs/plugin-vue-jsx";
+
 // https://vitejs.dev/config/
 export default defineConfig({
   base: "./",
@@ -35,5 +37,5 @@ export default defineConfig({
         refSugar: true
       }
     }
-    )]
+    ), vueJsx()]
 })

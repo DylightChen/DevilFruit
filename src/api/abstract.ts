@@ -2,17 +2,16 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-26 15:05:24
+ * @LastEditTime: 2021-08-29 19:31:01
  * @FilePath: /my-vite-app/src/api/abstract.ts
  * @Description:
  */
 
 
-// import getUrl from './config';
-// import storage from '@/utils/storage';
 import instance from './intercept';
 import { AxiosRequest, CustomResponse } from './types';
 import { ElMessage } from 'element-plus'
+// import storage from '@/utils/storage';
 // interface UrlDictType {
 //     [key: string]: {
 //         [key: string]: string;
@@ -45,12 +44,6 @@ class Abstract {
             // token: storage().get('token') || storage('localstorage').get('token'),
             // 'x-language': storage('localstorage').get('i18n')
         });
-
-        // // url解析
-        // const _url = (url as string).split('.');
-        // console.log(_url);
-        // url = getUrl(_url[0], _url[1], urlDict);
-
         return new Promise((resolve, reject) => {
             instance({
                 baseURL,

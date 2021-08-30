@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-06-27 17:11:14
+ * @LastEditTime: 2021-08-30 00:37:26
  * @FilePath: /my-vite-app/src/router/index.ts
  * @Description: 
  */
@@ -16,13 +16,13 @@ const a: Array<RouteRecordRaw> = [
 const main: RouteRecordRaw = {
   path: '/layout',
   name: 'layout',
-  component: () => import('@/views/layout/index.vue'),
+  component: () => import('@/views/layout/index'),
   meta: { title_cn: '主入口整体布局', title_en: 'Overall layout of main entrance' },
   children: [
     {
       path: '/home',
       name: 'home',
-      component: () => import('@/views/layout/index.vue'),
+      component: () => import('@/views/layout/index'),
       meta: {
         id: 'home',
         isTab: true,
@@ -35,7 +35,7 @@ const main: RouteRecordRaw = {
   ]
 }
 
-const routes: Array<RouteRecordRaw> =[main,...a]
+const routes: Array<RouteRecordRaw> = [main, ...a]
 const router = createRouter({
   history: createWebHashHistory(),
   routes

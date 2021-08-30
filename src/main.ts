@@ -2,12 +2,12 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-26 15:28:48
+ * @LastEditTime: 2021-08-30 00:40:47
  * @FilePath: /my-vite-app/src/main.ts
  * @Description:
  */
 import { createApp } from 'vue';
-import App from './App.vue';
+import App from './App.tsx';
 import router from './router';
 import ElementPlus from 'element-plus';
 import '@/assets/sass/index.scss'
