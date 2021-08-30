@@ -4,7 +4,7 @@
  * @Email: 1240235512@qq.com
  * @Date: 2020-12-17 09:47:33
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-29 21:20:32
+ * @LastEditTime: 2021-08-30 15:35:16
 -->
 <template>
   <img class="login-background" src="../assets/image/loginBg.jpg" alt />
@@ -67,12 +67,13 @@ const user = useUserStore()
  * @return {*}
  * @author: 
  */
-let elementRef = $ref(null as Element | null)
+let elementRef = ref()
 const submit = (): void => {
-  elementRef.validate(async (valid: boolean) => {
+  elementRef.value.validate(async (valid: boolean) => {
     if (valid) {
       data.loading = true
       let res = await user.login(form)
+      console.log(router.push({ name: 'home' }));
       if (res) router.push({ name: 'home' })
     }
   })
