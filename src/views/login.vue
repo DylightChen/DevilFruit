@@ -4,7 +4,7 @@
  * @Email: 1240235512@qq.com
  * @Date: 2020-12-17 09:47:33
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-30 15:35:16
+ * @LastEditTime: 2021-09-03 18:11:35
 -->
 <template>
   <img class="login-background" src="../assets/image/loginBg.jpg" alt />
@@ -34,7 +34,7 @@
 </template>
   
 <script lang="ts" setup>
-import { computed, reactive, toRefs, nextTick, ref, Ref, onBeforeMount } from 'vue'
+import { computed, reactive, toRefs, nextTick, ref, onBeforeMount } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '@/stores/user'
 
@@ -67,14 +67,13 @@ const user = useUserStore()
  * @return {*}
  * @author: 
  */
-let elementRef = ref()
+let elementRef = $ref(Element | null)
 const submit = (): void => {
-  elementRef.value.validate(async (valid: boolean) => {
+  elementRef.validate(async (valid: boolean) => {
     if (valid) {
       data.loading = true
       let res = await user.login(form)
-      console.log(router.push({ name: 'home' }));
-      if (res) router.push({ name: 'home' })
+      if (res) router.replace({ name: 'home' })
     }
   })
 }

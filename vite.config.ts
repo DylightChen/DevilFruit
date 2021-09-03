@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-30 00:17:29
+ * @LastEditTime: 2021-09-03 17:48:27
  * @FilePath: /my-vite-app/vite.config.ts
  * @Description: 
  */
@@ -33,9 +33,6 @@ export default defineConfig({
   },
   plugins: [
     vue({
-      script: {
-        refSugar: true
-      }
-    }
+      refTransform: /^((?!node_modules).)*$/    }
     ), vueJsx()]
 })
