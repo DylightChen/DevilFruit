@@ -2,13 +2,23 @@
  * @Author: Dylight
  * @Date: 2021-08-30 16:08:44
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-08 18:09:53
+ * @LastEditTime: 2021-09-08 18:19:07
  * @FilePath: /my-vite-app/src/views/layout/sideBar/index.vue
  * @Description:  
 -->
 //TODO 模版传参类型报错
 <template>
-    <el-menu mode="vertical" background-color="#00142a" text-color="hsla(0, 0%, 100%, .65)" active-text-color="#409EFF" unique-opened @open="handleOpen" @close="handleClose" router>
+    <el-menu
+        mode="vertical"
+        class="el-menu-vertical-demo"
+        background-color="#00142a"
+        text-color="hsla(0, 0%, 100%, .65)"
+        active-text-color="#409EFF"
+        unique-opened
+        @open="handleOpen"
+        @close="handleClose"
+        router
+    >
         <template v-for="menu in aside">
             <menuItem v-if="menu.children?.length === 0" :menu="menu" />
             <menuSub v-else :menu="menu" />

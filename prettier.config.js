@@ -2,13 +2,13 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-08 11:18:21
+ * @LastEditTime: 2021-09-08 18:14:15
  * @FilePath: /my-vite-app/prettier.config.js
  * @Description: 
  */
 module.exports = {
     // 一行最多 100 字符
-    printWidth: 200,
+    printWidth: 150,
     // 使用 4 个空格缩进
     tabWidth: 4,
     // 不使用缩进符，而使用空格
