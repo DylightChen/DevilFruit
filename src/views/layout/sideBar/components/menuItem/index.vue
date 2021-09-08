@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-09-06 18:40:15
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-08 17:35:33
+ * @LastEditTime: 2021-09-08 18:08:15
  * @FilePath: /my-vite-app/src/views/layout/sideBar/components/menuItem/index.vue
  * @Description: 
 -->
@@ -15,11 +15,6 @@
 <script lang="ts" setup>
 import {RoutesDataItem} from '@/views/layout/sideBar/model';
 import {defineProps} from 'vue';
-// const props = defineProps({
-//     menu:Object,
-//     path:String,
-//     name:String
-// })
 const {menu} =defineProps<{
     menu:RoutesDataItem,
 }>()

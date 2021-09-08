@@ -4,7 +4,7 @@ import { RouteRecordRaw } from 'vue-router';
  * @Author: Dylight
  * @Date: 2021-09-07 14:14:55
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-08 17:36:39
+ * @LastEditTime: 2021-09-08 18:07:18
  * @FilePath: /my-vite-app/src/views/layout/sideBar/model.ts
  * @Description:
  */
@@ -14,8 +14,8 @@ export interface RoutesDataItem {
     // 图标的名称，显示在菜单标题前
     icon?: string;
     //父亲id
-    parentId?: number | string;
-    id?: number;
+    parentId?: number;
+    id?: String;
     path?: String;
     // 权限控制，页面角色(您可以设置多个角色)
     roles?: string[];

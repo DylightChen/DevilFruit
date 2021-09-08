@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-09-06 18:30:16
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-08 17:35:51
+ * @LastEditTime: 2021-09-08 18:09:09
  * @FilePath: /my-vite-app/src/views/layout/sideBar/components/submenu/index.vue
  * @Description: 
 -->
@@ -25,10 +25,14 @@ import {RoutesDataItem} from '@/views/layout/sideBar/model';
 const {menu} =defineProps<{
     menu:RoutesDataItem,
 }>()
+</script>
+//组件调用自己为自己命名
+<script lang="ts">
+import {
+  defineComponent
+} from 'vue'
 
-// const props = defineProps({
-//     menu:Object,
-// })
-
-// console.log(menu.name);
+export default defineComponent({
+  name: 'layoutMenuSub'
+})
 </script>
