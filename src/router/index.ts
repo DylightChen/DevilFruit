@@ -2,42 +2,91 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-30 15:40:39
+ * @LastEditTime: 2021-09-08 17:04:20
  * @FilePath: /my-vite-app/src/router/index.ts
- * @Description: 
+ * @Description:
  */
-import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
-
-
-const a: Array<RouteRecordRaw> = [
-  { path: '/', redirect: { name: 'login' }, meta: { title_cn: '重定向', title_en: 'Redirect' } },
-  { path: '/login', name: 'login', component: () => import('@/views/login.vue'), meta: { title_cn: '登录', title_en: 'Login' } },
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
+import { useUserStore } from '@/stores/user';
+import { useRouteStore } from '@/stores/route';
+import { RoutesDataItem } from '@/views/layout/sideBar/model';
+const defalutMenu: Array<RouteRecordRaw> = [
+    { path: '/', redirect: { name: 'login' }, meta: { title_cn: '重定向', title_en: 'Redirect' } },
+    {
+        path: '/login',
+        name: 'login',
+        component: () => import('@/views/login.vue'),
+        meta: { title_cn: '登录', title_en: 'Login' }
+    }
 ];
 const main: RouteRecordRaw = {
-  path: '/layout',
-  name: 'layout',
-  component: () => import('@/views/layout/index.vue'),
-  meta: { title_cn: '主入口整体布局', title_en: 'Overall layout of main entrance' },
-  children: [
-    {
-      path: '/home',
-      name: 'home',
-      component: () => import('@/views/layout/index.vue'),
-      meta: {
-        id: 'home',
-        isTab: true,
-        type: 1,
-        isDynamic: false,
-        keepAlive: true,
-        multiple: false
-      }
-    },
-  ]
-}
+    path: '/layout',
+    name: 'layout',
+    component: () => import('@/views/layout/index.vue'),
+    meta: { title_cn: '主入口整体布局', title_en: 'Overall layout of main entrance' },
+    children: [
+        {
+            path: '/home',
+            name: 'home',
+            component: () => import('@/views/layout/index.vue'),
+            meta: {
+                id: 'home',
+                isTab: true,
+                type: 1,
+                isDynamic: false,
+                keepAlive: true,
+                multiple: false
+            }
+        }
+    ]
+};
 
-const routes: Array<RouteRecordRaw> = [main, ...a]
+const routes: Array<RouteRecordRaw> = [main, ...defalutMenu];
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+    history: createWebHashHistory(),
+    routes
+});
+// let file = (file: string) => import(`@/views/${file}`);
+let file = (file: string) => `@/views${file}`;
+const asyncRoute = (routeArr: any, menu: any): Array<RouteRecordRaw> => {
+    menu.forEach((item: RoutesDataItem) => {
+        const menuSub = Object.assign({}, item);
+        menuSub.path = menuSub.pageUrl;
+        menuSub.redirect = { name: menuSub.pageUrl };
+        if ((menuSub.parentId as number) > 0) {
+            menuSub.component = file(menuSub.pageUrl as string);
+        } else {
+            menuSub.component = file(menuSub.pageUrl as string);
+        }
+        if ((item.children?.length as number) !== 0) {
+            menuSub.children = [];
+            asyncRoute(menuSub.children, item.children);
+        }
+        routeArr.push(menuSub as RouteRecordRaw);
+    });
+    return routeArr;
+};
+
+router.beforeEach(async (to, from) => {
+    const user = useUserStore();
+    const useRoute = useRouteStore();
+    let res = await user.getmenu();
+    let data: Array<object>;
+    let routeArr: Array<object>;
+    data = res.data;
+    routeArr = [];
+
+    let result = asyncRoute(routeArr, data);
+    useRoute.updateMenu(result);
+    result.forEach((item) => {
+        router.addRoute(item);
+    });
+    // ====== LOG START ======
+    console.log('\n');
+    console.group('Log');
+    console.log(router.getRoutes());
+    console.groupEnd();
+    console.log('\n');
+    // ====== LOG END ======
 });
 export default router;

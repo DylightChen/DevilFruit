@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-08-26 15:25:20
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-27 19:05:52
+ * @LastEditTime: 2021-09-07 15:13:20
  * @FilePath: /my-vite-app/src/stores/user.ts
  * @Description:
  */
@@ -27,6 +27,12 @@ export const useUserStore = defineStore({
             if (!userData.status) return userData.status
             this.$patch(userData)
             return userData
+        },
+        async getmenu(){
+            let  menu = await instance['oopcApi'].getMenu()
+            console.log(menu)
+
+            return menu
         }
     },
 });

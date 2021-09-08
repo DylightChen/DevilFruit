@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-25 18:52:00
+ * @LastEditTime: 2021-09-07 15:15:31
  * @FilePath: /my-vite-app/src/api/modules/oop.ts
  * @Description:
  */
@@ -16,7 +16,7 @@ import { OopType } from '../types/oop';
 
 
 enum authorBasic {
-    oopServe = "userDomain/admin/v1/user/login",
+    getMenu = "user/getMenu",
     oopServe2 = "userDomain/admin/v1/user/AuthLogOut",
 
 }
@@ -32,11 +32,11 @@ enum authorBasic {
 // }
 
 class oopApiClass extends Abstract {
-    oopServe(data: OopType) {
-        return this.postReq({ url: authorBasic.oopServe, data });
+    getMenu(data: OopType) {
+        return this.postReq({ url: authorBasic.getMenu, data });
     }
     oopServe2(data: OopType) {
-        return this.postReq({ url: authorBasic.oopServe, data });
+        return this.postReq({ url: authorBasic.getMenu, data });
     }
 }
 export default oopApiClass

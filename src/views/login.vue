@@ -4,7 +4,7 @@
  * @Email: 1240235512@qq.com
  * @Date: 2020-12-17 09:47:33
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-03 18:11:35
+ * @LastEditTime: 2021-09-07 16:24:14
 -->
 <template>
   <img class="login-background" src="../assets/image/loginBg.jpg" alt />
@@ -44,7 +44,6 @@ const data = reactive({
   captchaPath: ''
 })
 
-// console.log(elementRef)
 const form = reactive({
   username: 'test',
   password: 'test',
@@ -67,12 +66,12 @@ const user = useUserStore()
  * @return {*}
  * @author: 
  */
-let elementRef = $ref(Element | null)
+const elementRef = ref()
 const submit = (): void => {
-  elementRef.validate(async (valid: boolean) => {
+  elementRef.value.validate(async (valid: boolean) => {
     if (valid) {
       data.loading = true
-      let res = await user.login(form)
+      let res = await user.login(form)      
       if (res) router.replace({ name: 'home' })
     }
   })

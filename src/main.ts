@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-31 14:18:23
+ * @LastEditTime: 2021-09-07 15:38:20
  * @FilePath: /my-vite-app/src/main.ts
  * @Description:
  */
@@ -14,8 +14,7 @@ import '@/assets/sass/index.scss'
 import { createPinia } from 'pinia'
 const pinia = createPinia()
 const app = createApp(App)
-app
+app.use(pinia)
     .use(router)
-    .use(pinia)
     .use(ElementPlus)
     .mount('#app');

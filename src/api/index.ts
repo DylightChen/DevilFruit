@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-30 18:25:24
+ * @LastEditTime: 2021-09-06 16:55:59
  * @FilePath: /my-vite-app/src/api/index.ts
  * @Description: 
  */
@@ -25,5 +25,3 @@ let instance: apiClassType = { };
     return instance
 })()
 export { instance }
-
-// export default instance;
