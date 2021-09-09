@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-08 17:04:20
+ * @LastEditTime: 2021-09-09 12:45:45
  * @FilePath: /my-vite-app/src/router/index.ts
  * @Description:
  */
@@ -69,15 +69,14 @@ const asyncRoute = (routeArr: any, menu: any): Array<RouteRecordRaw> => {
 
 router.beforeEach(async (to, from) => {
     const user = useUserStore();
-    const useRoute = useRouteStore();
     let res = await user.getmenu();
     let data: Array<object>;
     let routeArr: Array<object>;
     data = res.data;
     routeArr = [];
-
     let result = asyncRoute(routeArr, data);
-    useRoute.updateMenu(result);
+    const useRoute = useRouteStore();
+    useRoute.updateMenu(result as RoutesDataItem[]);
     result.forEach((item) => {
         router.addRoute(item);
     });

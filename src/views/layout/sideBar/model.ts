@@ -4,7 +4,7 @@ import { RouteRecordRaw } from 'vue-router';
  * @Author: Dylight
  * @Date: 2021-09-07 14:14:55
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-08 18:07:18
+ * @LastEditTime: 2021-09-09 12:50:10
  * @FilePath: /my-vite-app/src/views/layout/sideBar/model.ts
  * @Description:
  */
@@ -28,7 +28,7 @@ export interface RoutesDataItem {
     // 组件页面
     component?: Object;
     // 子集
-    children: RoutesDataItem[] & RouteRecordRaw[];
+    children: RoutesDataItem[];
     /**
      * 面包屑自定义内容：
      *     1、默认不配置按照路由自动读取；

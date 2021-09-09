@@ -2,16 +2,15 @@
  * @Author: Dylight
  * @Date: 2021-09-08 15:31:37
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-08 15:55:15
+ * @LastEditTime: 2021-09-09 13:08:34
  * @FilePath: /my-vite-app/src/stores/route.ts
  * @Description:
  */
 
 import { defineStore } from 'pinia';
 import { RoutesDataItem } from '@/views/layout/sideBar/model';
-import { RouteRecordRaw } from 'vue-router';
 export type routeState = {
-    dynamicRoute: RouteRecordRaw[];
+    dynamicRoute: RoutesDataItem[];
 };
 export const useRouteStore = defineStore({
     id: 'routeStore',
@@ -22,7 +21,7 @@ export const useRouteStore = defineStore({
         }
     },
     actions: {
-        updateMenu(route: RouteRecordRaw[]) {
+        updateMenu(route: RoutesDataItem[]) {
             this.dynamicRoute = route;
         }
     }
