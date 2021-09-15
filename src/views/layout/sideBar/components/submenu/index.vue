@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-09-06 18:30:16
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-09 13:04:45
+ * @LastEditTime: 2021-09-15 10:02:17
  * @FilePath: /my-vite-app/src/views/layout/sideBar/components/submenu/index.vue
  * @Description: 
 -->
@@ -25,6 +25,7 @@ const { menu } = defineProps<{
     menu: RoutesDataItem;
 }>();
 </script>
+
 //组件调用自己为自己命名
 <script lang="ts">
 import { defineComponent } from 'vue';

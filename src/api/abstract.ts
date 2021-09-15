@@ -2,27 +2,15 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-08-29 19:31:01
+ * @LastEditTime: 2021-09-09 18:15:21
  * @FilePath: /my-vite-app/src/api/abstract.ts
  * @Description:
  */
 
-
 import instance from './intercept';
 import { AxiosRequest, CustomResponse } from './types';
-import { ElMessage } from 'element-plus'
+import { ElMessage } from 'element-plus';
 // import storage from '@/utils/storage';
-// interface UrlDictType {
-//     [key: string]: {
-//         [key: string]: string;
-//     };
-// }
-
-// const urlDict: UrlDictType = {
-//     Basic: {
-//         AuthLogin: 'userDomain/admin/v1/user/login' // 登录
-//     }
-// };
 
 class Abstract {
     protected baseURL: string = './';
@@ -31,15 +19,7 @@ class Abstract {
         ContentType: 'application/json;charset=UTF-8'
     };
 
-    private apiAxios({
-        baseURL = this.baseURL,
-        headers = this.headers,
-        method,
-        url,
-        data,
-        params,
-        responseType
-    }: AxiosRequest): Promise<CustomResponse> {
+    private apiAxios({ baseURL = this.baseURL, headers = this.headers, method, url, data, params, responseType }: AxiosRequest): Promise<CustomResponse> {
         Object.assign(headers, {
             // token: storage().get('token') || storage('localstorage').get('token'),
             // 'x-language': storage('localstorage').get('i18n')
@@ -65,7 +45,7 @@ class Abstract {
                                 origin: res.data
                             });
                         } else {
-                            ElMessage({ showClose: true, message: res.data?.errorMessage || (url + '请求失败'), type: 'error' })
+                            ElMessage({ showClose: true, message: res.data?.errorMessage || url + '请求失败', type: 'error' });
                             resolve({
                                 status: false,
                                 message: res.data?.errorMessage || url + '请求失败',
@@ -74,7 +54,7 @@ class Abstract {
                             });
                         }
                     } else {
-                        ElMessage({ showClose: true, message: res.data?.errorMessage || (url + '请求失败') })
+                        ElMessage({ showClose: true, message: res.data?.errorMessage || url + '请求失败' });
                         resolve({
                             status: false,
                             message: res.data?.errorMessage || url + '请求失败',
@@ -84,7 +64,7 @@ class Abstract {
                 })
                 .catch((err) => {
                     const message = err?.data?.errorMessage || err?.message || url + '请求失败';
-                    ElMessage({ showClose: true, message: message })
+                    ElMessage({ showClose: true, message: message });
                     reject({ status: false, message, data: null });
                 });
         });

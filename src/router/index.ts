@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-09 12:45:45
+ * @LastEditTime: 2021-09-14 18:05:35
  * @FilePath: /my-vite-app/src/router/index.ts
  * @Description:
  */
@@ -80,12 +80,5 @@ router.beforeEach(async (to, from) => {
     result.forEach((item) => {
         router.addRoute(item);
     });
-    // ====== LOG START ======
-    console.log('\n');
-    console.group('Log');
-    console.log(router.getRoutes());
-    console.groupEnd();
-    console.log('\n');
-    // ====== LOG END ======
 });
 export default router;
