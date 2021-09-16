@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-06-24 19:35:39
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-14 18:05:35
+ * @LastEditTime: 2021-09-16 17:34:22
  * @FilePath: /my-vite-app/src/router/index.ts
  * @Description:
  */
@@ -10,6 +10,9 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import { useUserStore } from '@/stores/user';
 import { useRouteStore } from '@/stores/route';
 import { RoutesDataItem } from '@/views/layout/sideBar/model';
+
+//需要在tsconfig文件下添加类型定义vite/client
+const modules = import.meta.glob('../views/**/**.vue');
 const defalutMenu: Array<RouteRecordRaw> = [
     { path: '/', redirect: { name: 'login' }, meta: { title_cn: '重定向', title_en: 'Redirect' } },
     {
@@ -28,7 +31,7 @@ const main: RouteRecordRaw = {
         {
             path: '/home',
             name: 'home',
-            component: () => import('@/views/layout/index.vue'),
+            component: () => import('@/views/home/index.vue'),
             meta: {
                 id: 'home',
                 isTab: true,
@@ -46,17 +49,17 @@ const router = createRouter({
     history: createWebHashHistory(),
     routes
 });
-// let file = (file: string) => import(`@/views/${file}`);
-let file = (file: string) => `@/views${file}`;
+///* @vite-ignore */
+// let file = (file: string | undefined) => import(`@/views${file}/index.vue`);
+// let file = (file: string) => `@/views${file}`;
 const asyncRoute = (routeArr: any, menu: any): Array<RouteRecordRaw> => {
     menu.forEach((item: RoutesDataItem) => {
         const menuSub = Object.assign({}, item);
-        menuSub.path = menuSub.pageUrl;
-        menuSub.redirect = { name: menuSub.pageUrl };
         if ((menuSub.parentId as number) > 0) {
-            menuSub.component = file(menuSub.pageUrl as string);
+            menuSub.component = modules[`../views${menuSub.path}/index.vue`];
         } else {
-            menuSub.component = file(menuSub.pageUrl as string);
+            menuSub.component = modules[`../views/layout/index.vue`];
+            menuSub.redirect = { name: menuSub.children[0].name };
         }
         if ((item.children?.length as number) !== 0) {
             menuSub.children = [];
@@ -80,5 +83,6 @@ router.beforeEach(async (to, from) => {
     result.forEach((item) => {
         router.addRoute(item);
     });
+    console.log(router.getRoutes());
 });
 export default router;

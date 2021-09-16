@@ -2,7 +2,7 @@
  * @Author: Dylight
  * @Date: 2021-08-30 16:21:27
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-10 18:05:15
+ * @LastEditTime: 2021-09-15 15:31:55
  * @FilePath: /my-vite-app/src/views/layout/header/index.vue
  * @Description: 
 -->
@@ -26,7 +26,7 @@
                     </div>
                     <template #dropdown>
                         <el-dropdown-menu class="user-dropdown" slot="dropdown">
-                            <router-link to="/rent">
+                            <router-link to="/app">
                                 <el-dropdown-item> 我的主页 </el-dropdown-item>
                             </router-link>
                             <el-dropdown-item>

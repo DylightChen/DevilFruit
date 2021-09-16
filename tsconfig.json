@@ -9,7 +9,7 @@
     // 从 tslib 导入辅助工具函数（比如 __extends， __rest等）
     "importHelpers": true,
     // 指定生成哪个模块系统代码
-    "module": "esnext",
+    "module": "ESNext",
     // 决定如何处理模块。
     "moduleResolution": "node",
     // 启用所有严格类型检查选项。
@@ -23,7 +23,7 @@
     // 指定ECMAScript目标版本 
     "target": "esnext",
     // 要包含的类型声明文件名列表
-    "types": [],
+    "types": ["vite/client"],
     "isolatedModules": true,
     // 模块名到基于 baseUrl的路径映射的列表。
     "paths": {

@@ -2,13 +2,21 @@
  * @Author: Dylight
  * @Date: 2021-08-30 16:08:44
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-15 10:56:41
+ * @LastEditTime: 2021-09-15 15:07:53
  * @FilePath: /my-vite-app/src/views/layout/sideBar/index.vue
  * @Description:  
 -->
 <template>
     <scrollBar>
-        <el-menu mode="vertical" class="sidebar-container" background-color="#00142a" text-color="hsla(0, 0%, 100%, .65)" active-text-color="#409EFF" unique-opened>
+        <el-menu
+            mode="vertical"
+            class="sidebar-container"
+            background-color="#00142a"
+            text-color="hsla(0, 0%, 100%, .65)"
+            active-text-color="#409EFF"
+            unique-opened
+            router
+        >
             <div class="logo">
                 <img src="https://img.alicdn.com/tfs/TB1ONhloamWBuNjy1XaXXXCbXXa-200-200.png" width="40" />
                 <span class="site-name"></span>

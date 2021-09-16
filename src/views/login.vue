@@ -4,7 +4,7 @@
  * @Email: 1240235512@qq.com
  * @Date: 2020-12-17 09:47:33
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-09 13:08:16
+ * @LastEditTime: 2021-09-16 17:29:01
 -->
 <template>
     <img class="login-background" src="../assets/image/loginBg.jpg" alt />
@@ -63,7 +63,7 @@ const submit = (): void => {
         if (valid) {
             data.loading = true;
             let res = await user.login(form);
-            if (res) router.replace({ name: 'home' });
+            if (res) router.replace({ name: 'layout' });
         }
     });
 };
@@ -83,8 +83,9 @@ const submit = (): void => {
         background-color: transparent;
     }
     .form {
+        text-align: center;
         .login-btn {
-            width: 80%;
+            width: 20%;
             cursor: pointer;
         }
         .login-btn {

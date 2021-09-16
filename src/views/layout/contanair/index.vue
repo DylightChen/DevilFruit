@@ -2,15 +2,20 @@
  * @Author: Dylight
  * @Date: 2021-09-10 18:07:31
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-10 18:13:05
+ * @LastEditTime: 2021-09-16 17:32:14
  * @FilePath: /my-vite-app/src/views/layout/contanair/index.vue
  * @Description: 
 -->
 <template>
     <section id="app-main">
-        <transition name="fade-transverse">
-            <router-view> 111 </router-view>
-        </transition>
+        <RouterView>
+            <template v-slot="{ Component, route }">
+                <!-- {{ JSON.stringify(Component) }} -->
+                <transition name="fade-slide" mode="out-in" appear>
+                    <component :is="Component" :key="route.path" />
+                </transition>
+            </template>
+        </RouterView>
     </section>
 </template>
 <style lang="scss" scope>

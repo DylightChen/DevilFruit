@@ -2,15 +2,15 @@
  * @Author: Dylight
  * @Date: 2021-09-06 18:30:16
  * @LastEditors: Dylight
- * @LastEditTime: 2021-09-15 10:02:17
+ * @LastEditTime: 2021-09-16 17:11:16
  * @FilePath: /my-vite-app/src/views/layout/sideBar/components/submenu/index.vue
  * @Description: 
 -->
 <template>
-    <el-sub-menu :index="menu?.id">
+    <el-sub-menu :index="menu?.path">
         <template #title>
-            <i slot="icon" class="el-icon-location"></i>
-            <span>{{ menu?.name }}</span>
+            <i slot="icon" :class="menu.icon"></i>
+            <span>{{ menu?.pathName }}</span>
         </template>
         <template v-for="(child, childIndex) in menu?.children">
             <layoutMenuItem v-if="child.children?.length == 0" :menu="child" :key="childIndex" />
