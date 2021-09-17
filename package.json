@@ -20,7 +20,7 @@
     "@vitejs/plugin-vue": "^1.6.0",
     "@vitejs/plugin-vue-jsx": "^1.1.7",
     "@vue/compiler-sfc": "^3.2.9",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "eslint": "8.0.0-beta.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
